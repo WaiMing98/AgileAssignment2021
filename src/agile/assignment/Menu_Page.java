@@ -27,6 +27,7 @@ public class Menu_Page extends javax.swing.JFrame {
         initComponents();
         init();
         refreshDDL();
+        
     }
 
     public void init(){
@@ -40,6 +41,7 @@ public class Menu_Page extends javax.swing.JFrame {
         MP.add(mp3);
         MP.add(mp4);
         MP.add(mp5);
+        prodStock.setText("");
     }
     
     public String GenNewID(){
@@ -62,6 +64,10 @@ public class Menu_Page extends javax.swing.JFrame {
                 for(int i=0; i<MP.size(); i++){
                     jComboBox1.addItem(MP.get(i).getProductName());
                 }
+        jComboBox1.setSelectedIndex(-1);
+        prodPrice.setText("");
+        prodStock.setText("");
+        prodDesc.setText("");
     }
     
     public double getSum(){
@@ -93,10 +99,9 @@ public class Menu_Page extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         totalPrice = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
-        prodStock = new javax.swing.JLabel();
-        prodDesc = new javax.swing.JLabel();
-        prodName = new javax.swing.JLabel();
-        prodPrice = new javax.swing.JLabel();
+        prodStock = new javax.swing.JTextField();
+        prodPrice = new javax.swing.JTextField();
+        prodDesc = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -181,76 +186,70 @@ public class Menu_Page extends javax.swing.JFrame {
         });
 
         prodStock.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        prodStock.setText("jLabel7");
-
-        prodDesc.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        prodDesc.setText("jLabel7");
-
-        prodName.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        prodName.setText("jLabel7");
+        prodStock.setEnabled(false);
 
         prodPrice.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        prodPrice.setText("jLabel7");
+        prodPrice.setEnabled(false);
+
+        prodDesc.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        prodDesc.setToolTipText("");
+        prodDesc.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(63, 63, 63)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(77, 77, 77)
+                        .addGap(51, 51, 51)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(prodName, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(prodDesc, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
-                                .addComponent(prodStock, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(prodPrice, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(jLabel5))
+                        .addGap(33, 33, 33)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(prodStock)
+                            .addComponent(prodPrice, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
+                            .addComponent(prodDesc)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(totalPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3))
-                    .addComponent(jButton1)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(23, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(totalPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton3))
+                            .addComponent(jButton1)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(prodName))
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
-                    .addComponent(prodPrice))
+                    .addComponent(prodPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(prodStock))
+                    .addComponent(prodStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(prodDesc))
-                .addGap(5, 5, 5)
+                    .addComponent(prodDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
@@ -261,8 +260,7 @@ public class Menu_Page extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(totalPrice))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jButton1))
         );
 
         pack();
@@ -273,13 +271,16 @@ public class Menu_Page extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-            if( prodStock.getText() == "0"){
+            if( Integer.parseInt(prodStock.getText()) == 0){
                 JOptionPane.showMessageDialog(this,"The food is out of stock, please select another set of food ");
+            }
+            else if(jComboBox1.getSelectedIndex() == -1){
+                JOptionPane.showMessageDialog(this,"Please select any set of food");
             }
             else{
                 DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
                 model.addRow(new Object[]{
-                    prodName.getText(),
+                    jComboBox1.getSelectedItem(),
                     Double.parseDouble(prodPrice.getText()),
                     prodDesc.getText()
                 });   
@@ -291,18 +292,19 @@ public class Menu_Page extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         for(int i=0; i <MP.size(); i++ ){
             if(jComboBox1.getSelectedItem() == MP.get(i).getProductName()){
-                prodName.setText(String.valueOf(MP.get(i).productName));
                 prodPrice.setText(String.valueOf(MP.get(i).productPrice));
                 prodStock.setText(String.valueOf(MP.get(i).productStock));
                 prodDesc.setText(String.valueOf(MP.get(i).productDesc));
             }
         }
+        
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
        model.setRowCount(0);
        totalPrice.setText("0.00");
+       refreshDDL();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
@@ -352,10 +354,9 @@ public class Menu_Page extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JLabel prodDesc;
-    private javax.swing.JLabel prodName;
-    private javax.swing.JLabel prodPrice;
-    private javax.swing.JLabel prodStock;
+    private javax.swing.JTextField prodDesc;
+    private javax.swing.JTextField prodPrice;
+    private javax.swing.JTextField prodStock;
     private javax.swing.JLabel totalPrice;
     // End of variables declaration//GEN-END:variables
 }
