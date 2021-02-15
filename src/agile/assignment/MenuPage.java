@@ -13,19 +13,22 @@ public class MenuPage {
     String productID;
     String productName;
     double productPrice;
+    int productStock;
     String productStatus;
-    String OrderID;      
+    String productDesc;    
 
     public MenuPage() {
     }
 
-    public MenuPage(String productID, String productName, double productPrice, String productStatus) {
+    public MenuPage(String productID, String productName, double productPrice, int productStock, String productStatus, String productDesc) {
         this.productID = productID;
         this.productName = productName;
         this.productPrice = productPrice;
+        this.productStock = productStock;
         this.productStatus = productStatus;
-    }    
-    
+        this.productDesc = productDesc;
+    }
+
     public String getProductID() {
         return productID;
     }
@@ -50,6 +53,14 @@ public class MenuPage {
         this.productPrice = productPrice;
     }
 
+    public int getProductStock() {
+        return productStock;
+    }
+
+    public void setProductStock(int productStock) {
+        this.productStock = productStock;
+    }
+
     public String getProductStatus() {
         return productStatus;
     }
@@ -58,11 +69,11 @@ public class MenuPage {
         this.productStatus = productStatus;
     }
 
-    public String getOrderID() {
-        return OrderID;
+    public String getProductDesc() {
+        return productDesc;
     }
 
-    public void setOrderID(String OrderID) {
-        this.OrderID = OrderID;
-    }
+    public void setProductDesc(String productDesc) {
+        this.productDesc = productDesc;
+    }    
 }
