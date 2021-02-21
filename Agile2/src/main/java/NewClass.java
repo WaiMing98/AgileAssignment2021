@@ -10,4 +10,5 @@
  */
 public class NewClass {
     int testingNumber1;
+    int testingsoso;
 }
