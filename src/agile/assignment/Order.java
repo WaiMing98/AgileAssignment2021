@@ -12,16 +12,17 @@ package agile.assignment;
 public class Order {
     String OrderID;
     String date;
-    String time;
+    String amount;
     String prodID;
 
     public Order() {
     }
 
-    public Order(String OrderID, String date, String time) {
+    public Order(String OrderID, String date, String amount, String prodID) {
         this.OrderID = OrderID;
         this.date = date;
-        this.time = time;
+        this.amount = amount;
+        this.prodID = prodID;
     }
 
     public String getOrderID() {
@@ -40,12 +41,12 @@ public class Order {
         this.date = date;
     }
 
-    public String getTime() {
-        return time;
+    public String getAmount() {
+        return amount;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setAmount(String amount) {
+        this.amount = amount;
     }
 
     public String getProdID() {
@@ -55,7 +56,4 @@ public class Order {
     public void setProdID(String prodID) {
         this.prodID = prodID;
     }
-    
-    
-    
 }

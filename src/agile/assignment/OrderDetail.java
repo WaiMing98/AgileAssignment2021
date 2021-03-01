@@ -5,8 +5,11 @@
  */
 package agile.assignment;
 
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JFrame;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,40 +20,64 @@ public class OrderDetail extends javax.swing.JFrame {
     /**
      * Creates new form OrderDetail
      */
-    String amount2;
+    
+    ArrayList<MenuPage> MP = new ArrayList<>();
+    ArrayList<Order> OR = new ArrayList<>();  
+    ArrayList<paymentMethod> PP = new ArrayList<>();
+
     public OrderDetail() {
         initComponents();
         init();
+        refreshTable();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
-
     
-    public OrderDetail(String amount){
+    public OrderDetail(ArrayList<MenuPage> MP1, ArrayList<Order> OR1, ArrayList<paymentMethod> PP1){
+        this.MP = MP1;
+        this.OR = OR1;
+        this.PP= PP1;
         initComponents();
-        amount2 = amount;
+        init();
+        refreshTable();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
     
     
     
-    
     public void init(){
-        area.setText("***************************************************\n");
-        area.setText(area.getText() +" *                        Please enjoy Your Meal                      *\n");
-        area.setText(area.getText() +"***************************************************\n");
+        Order PM = new Order("asd","asd","asd","asd");
+        OR.add(PM);
+        DefaultTableModel model = (DefaultTableModel) Order.getModel();
+        int rowCount = model.getRowCount();
+            for(int i=rowCount-1 ; i>=0;i--){
+                model.removeRow(i);
+            }
+        for(int i=0; i < OR.size(); i++){
+            model.addRow(new Object[]{ 
+                OR.get(i).getOrderID(),
+                OR.get(i).getDate(),
+                OR.get(i).getAmount(),
+                OR.get(i).getProdID()
+            });
+        }
+    }
     
-        Date obj = new Date();
-        String date = obj.toString();
-        
-        
-        
-        area.setText(area.getText() +"\n Date: "+date+"\n\n");
-        area.setText(area.getText() +"=============================================\n");
-        area.setText(area.getText() +" *                                  Food                                          *\n");
-        area.setText(area.getText() +"=============================================\n");
-        
-        area.setText(area.getText() );
-        area.setText(area.getText() );
-        area.setText(area.getText() +"Total Price:" + amount2);
+    public void refreshTable(){
+        DefaultTableModel model = (DefaultTableModel) Order.getModel();
+            int rowCount = model.getRowCount();
+            for(int i=rowCount-1 ; i>=0;i--){
+                model.removeRow(i);
+            }
+        for(int i=0; i < OR.size(); i++){
+            model.addRow(new Object[]{ 
+                OR.get(i).getOrderID(),
+                OR.get(i).getDate(),
+                OR.get(i).getAmount(),
+                OR.get(i).getProdID()
+            });
+        }
+        Order.setRowSelectionAllowed(true);
+        Order.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);            
     }
     
     
@@ -64,35 +91,81 @@ public class OrderDetail extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        area = new javax.swing.JTextArea();
+        Order = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        area.setColumns(20);
-        area.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        area.setRows(5);
-        area.setEnabled(false);
-        jScrollPane1.setViewportView(area);
+        Order.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "ID", "Date", "Amount", "Product"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(Order);
+        if (Order.getColumnModel().getColumnCount() > 0) {
+            Order.getColumnModel().getColumn(0).setResizable(false);
+            Order.getColumnModel().getColumn(1).setResizable(false);
+            Order.getColumnModel().getColumn(2).setResizable(false);
+            Order.getColumnModel().getColumn(3).setResizable(false);
+        }
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setText("My Order");
+
+        jButton1.setText("Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 591, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        new FirstPage(MP,OR,PP).setVisible(true);
+        this.setVisible(false);
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -130,7 +203,9 @@ public class OrderDetail extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea area;
+    private javax.swing.JTable Order;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

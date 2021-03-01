@@ -23,6 +23,7 @@ public class Menu_Page extends javax.swing.JFrame {
     
     ArrayList<MenuPage> MP = new ArrayList<>();
     ArrayList<Order> OR = new ArrayList<>();
+    ArrayList<paymentMethod> PP = new ArrayList<>();
     
     public Menu_Page() {
         initComponents();
@@ -31,6 +32,17 @@ public class Menu_Page extends javax.swing.JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    public Menu_Page(ArrayList<MenuPage> MP1, ArrayList<Order> OR1, ArrayList<paymentMethod> PP1){
+        this.MP = MP1;
+        this.OR = OR1;
+        this.PP= PP1;
+        initComponents();
+        init();
+        refreshDDL();
+    }
+    
+    
+    
     public void init(){
         MenuPage mp1 = new MenuPage("MP001", "Set A",12.00, 10,"Available", "Fish and Chip set");
         MenuPage mp2 = new MenuPage("MP002", "Set B",10.00, 0,"Out of Stock", "Chicken a lar carte");
@@ -62,7 +74,7 @@ public class Menu_Page extends javax.swing.JFrame {
     
     public void refreshDDL(){
         jComboBox1.removeAllItems();
-                for(int i=0; i<MP.size(); i++){
+                    for(int i=0; i<MP.size(); i++){
                     jComboBox1.addItem(MP.get(i).getProductName());
                 }
         jComboBox1.setSelectedIndex(-1);
@@ -103,6 +115,7 @@ public class Menu_Page extends javax.swing.JFrame {
         prodStock = new javax.swing.JTextField();
         prodPrice = new javax.swing.JTextField();
         prodDesc = new javax.swing.JTextField();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -196,12 +209,19 @@ public class Menu_Page extends javax.swing.JFrame {
         prodDesc.setToolTipText("");
         prodDesc.setEnabled(false);
 
+        jButton4.setText("Back");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(51, 51, 51)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,8 +247,12 @@ public class Menu_Page extends javax.swing.JFrame {
                                 .addComponent(jButton2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton3))
-                            .addComponent(jButton1)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)))
                 .addGap(0, 12, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -261,7 +285,9 @@ public class Menu_Page extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(totalPrice))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton4))
                 .addContainerGap())
         );
 
@@ -311,6 +337,12 @@ public class Menu_Page extends javax.swing.JFrame {
        refreshDDL();
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        new FirstPage(MP,OR,PP).setVisible(true);
+        this.setVisible(false);
+        dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -350,6 +382,7 @@ public class Menu_Page extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

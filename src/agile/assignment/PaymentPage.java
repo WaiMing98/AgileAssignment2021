@@ -25,10 +25,8 @@ public class PaymentPage extends javax.swing.JFrame {
      */
     public PaymentPage() {
         initComponents();
-        init();
+        
     }
-    
-    
 
     public PaymentPage(String amount){
         initComponents();
@@ -36,42 +34,15 @@ public class PaymentPage extends javax.swing.JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
     
-    public void init(){
-        DefaultTableModel model = (DefaultTableModel) test.getModel();
-        int rowCount = model.getRowCount();
-            for(int i=rowCount-1 ; i>=0;i--){
-                model.removeRow(i);
-            }
-        for(int i=0; i < PP.size(); i++){
-            model.addRow(new Object[]{ 
-                PP.get(i).getPaymentID(),
-                PP.get(i).getCardNumber(),
-                PP.get(i).getPaymentMethod(),
-                PP.get(i).getAmount()
-            });
-        }
+    public PaymentPage(ArrayList<MenuPage> MP1, ArrayList<Order> OR1, ArrayList<paymentMethod> PP1){
+        this.MP = MP1;
+        this.OR = OR1;
+        this.PP= PP1;
+        initComponents();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
-
-    public void refreshTable(){
-        DefaultTableModel model = (DefaultTableModel) test.getModel();
-            int rowCount = model.getRowCount();
-            for(int i=rowCount-1 ; i>=0;i--){
-                model.removeRow(i);
-            }
-        for(int i=0; i < PP.size(); i++){
-            model.addRow(new Object[]{ 
-                PP.get(i).getPaymentID(),
-                PP.get(i).getCardNumber(),
-                PP.get(i).getPaymentMethod(),
-                PP.get(i).getAmount()
-            });
-        }
-        test.setRowSelectionAllowed(true);
-        test.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);            
-    }
-
     
-    
+        
     public String GenNewID(){
     String newID = "";
     if(!PP.isEmpty()){
@@ -113,8 +84,6 @@ public class PaymentPage extends javax.swing.JFrame {
         txtPwd = new javax.swing.JPasswordField();
         jLabel5 = new javax.swing.JLabel();
         lblAmount = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        test = new javax.swing.JTable();
 
         jLabel1.setText("jLabel1");
 
@@ -185,19 +154,6 @@ public class PaymentPage extends javax.swing.JFrame {
 
         lblAmount.setText("lblAmount");
 
-        test.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(test);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -239,10 +195,6 @@ public class PaymentPage extends javax.swing.JFrame {
                                         .addComponent(txtCardNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 0, Short.MAX_VALUE)))))))
                 .addGap(62, 62, 62))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -269,9 +221,7 @@ public class PaymentPage extends javax.swing.JFrame {
                     .addComponent(lblAmount))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(232, 232, 232))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
@@ -305,9 +255,9 @@ public class PaymentPage extends javax.swing.JFrame {
             paymentMethod pp = new paymentMethod(GenNewID(),cardType, cn, dt, pwd, amount);
             PP.add(pp);
             JOptionPane.showMessageDialog(this,"Payment successful");
-            refreshTable();
-
-            //new OrderDetail(amount).setVisible(true);
+            new OrderDetail().setVisible(true);
+            this.setVisible(false);
+            dispose();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -389,9 +339,7 @@ public class PaymentPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAmount;
-    private javax.swing.JTable test;
     private javax.swing.JTextField txtCardNumber;
     private javax.swing.JTextField txtDate;
     private javax.swing.JPasswordField txtPwd;
