@@ -24,7 +24,7 @@ public class Food extends javax.swing.JFrame {
     JFrame frame;
     public Food() {
         initComponents();
-        String [] cols = {"ID", "Name", "Quantity", "Per Price", "Status"};
+        String [] cols = {"ID", "Name", "Quantity", "Per Price", "Status","Type"};
         DefaultTableModel modal = new DefaultTableModel(null, cols);
         FoodTable.setModel(modal);
     }
@@ -49,6 +49,8 @@ public class Food extends javax.swing.JFrame {
         txtPerPrice = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         cboAvailable = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+        cboType = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         btnAdd = new javax.swing.JButton();
@@ -93,6 +95,14 @@ public class Food extends javax.swing.JFrame {
         cboAvailable.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Available", "Non Available" }));
         cboAvailable.setSelectedIndex(-1);
         jPanel1.add(cboAvailable);
+
+        jLabel7.setText("Type");
+        jLabel7.setToolTipText("");
+        jPanel1.add(jLabel7);
+
+        cboType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Food", "Drink" }));
+        cboType.setSelectedIndex(-1);
+        jPanel1.add(cboType);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
@@ -213,6 +223,7 @@ public class Food extends javax.swing.JFrame {
             int quantity = Integer.parseInt(txtQuantity.getText());
             double price = Double.parseDouble(txtPerPrice.getText());
             String available = cboAvailable.getSelectedItem().toString();
+            String type = cboType.getSelectedItem().toString();
             if(FoodTable.getRowCount()> -1){
                 for(int i=0; i<FoodTable.getRowCount(); i++){
                     String id = FoodTable.getValueAt(i, 1).toString();
@@ -224,7 +235,7 @@ public class Food extends javax.swing.JFrame {
             }
             
             DefaultTableModel model = (DefaultTableModel) FoodTable.getModel();
-            model.addRow(new Object[]{ID, name, quantity, price, available});
+            model.addRow(new Object[]{ID, name, quantity, price, available,type});
             JOptionPane.showMessageDialog(frame, "Added Success!", "Added Success", JOptionPane.INFORMATION_MESSAGE );
             clear();
         }
@@ -264,11 +275,13 @@ public class Food extends javax.swing.JFrame {
                         int quantity = Integer.parseInt(txtQuantity.getText());
                         double price = Double.parseDouble(txtPerPrice.getText());
                         String available = cboAvailable.getSelectedItem().toString();
+                        String type = cboType.getSelectedItem().toString();
                         
                         FoodTable.setValueAt(name,i,1);
                         FoodTable.setValueAt(quantity,i,2);
                         FoodTable.setValueAt(price,i,3);
                         FoodTable.setValueAt(available,i,4);
+                        FoodTable.setValueAt(type, i, 5);
                         JOptionPane.showMessageDialog(frame, "Updated Success!", "Updated Success", JOptionPane.INFORMATION_MESSAGE );
                         break;
                     }
@@ -300,6 +313,7 @@ public class Food extends javax.swing.JFrame {
             int quantity = Integer.parseInt(txtQuantity.getText());
             double price = Double.parseDouble(txtPerPrice.getText());
             String available = cboAvailable.getSelectedItem().toString();
+            String type = cboType.getSelectedItem().toString();
             if(dt>=0){
             model.removeRow(dt);
             JOptionPane.showMessageDialog(frame, "Deleted Success!", "Deleted Success", JOptionPane.INFORMATION_MESSAGE );            
@@ -311,6 +325,7 @@ public class Food extends javax.swing.JFrame {
         txtQuantity.setText("");
         txtPerPrice.setText("");
         cboAvailable.setSelectedIndex(-1);
+        cboType.setSelectedIndex(-1);
         txtID.setEnabled(true);
         btnAdd.setEnabled(true);
         btnUpdate.setEnabled(false);
@@ -363,11 +378,13 @@ public class Food extends javax.swing.JFrame {
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> cboAvailable;
+    private javax.swing.JComboBox<String> cboType;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -430,6 +447,10 @@ public class Food extends javax.swing.JFrame {
             isValid= false;
             error += "Available is required!\n";
         }
+        if(cboType.getSelectedIndex() == -1){
+            isValid= false;
+            error += "Type is required!\n";
+        }
         if(isValid == false){
             JOptionPane.showMessageDialog(frame, error, "Error", JOptionPane.ERROR_MESSAGE );
         }
@@ -442,6 +463,7 @@ public class Food extends javax.swing.JFrame {
         txtQuantity.setText("");
         txtPerPrice.setText("");
         cboAvailable.setSelectedIndex(-1);
+        cboType.setSelectedIndex(-1);
         txtID.setEnabled(true);
         btnAdd.setEnabled(true);
         btnUpdate.setEnabled(false);
