@@ -6,6 +6,7 @@
 package agile.assignment;
 
 import java.util.ArrayList;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
@@ -27,7 +28,7 @@ public class Menu_Page extends javax.swing.JFrame {
         initComponents();
         init();
         refreshDDL();
-        
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     public void init(){
@@ -228,7 +229,7 @@ public class Menu_Page extends javax.swing.JFrame {
                                 .addComponent(jButton3))
                             .addComponent(jButton1)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 23, Short.MAX_VALUE))
+                .addGap(0, 12, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,7 +250,7 @@ public class Menu_Page extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(prodDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
@@ -260,21 +261,25 @@ public class Menu_Page extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(totalPrice))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1))
+                .addComponent(jButton1)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+        if(totalPrice.getText() == "0.00"){
+            JOptionPane.showMessageDialog(this,"Please select any set of food");
+        }
+        else{
+            String amount = totalPrice.getText();
+            new PaymentPage(amount).setVisible(true);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-            if( Integer.parseInt(prodStock.getText()) == 0){
-                JOptionPane.showMessageDialog(this,"The food is out of stock, please select another set of food ");
-            }
-            else if(jComboBox1.getSelectedIndex() == -1){
+            if(jComboBox1.getSelectedIndex() == -1){
                 JOptionPane.showMessageDialog(this,"Please select any set of food");
             }
             else{
@@ -284,8 +289,7 @@ public class Menu_Page extends javax.swing.JFrame {
                     Double.parseDouble(prodPrice.getText()),
                     prodDesc.getText()
                 });   
-                totalPrice.setText(Double.toString(getSum()));
-                
+                totalPrice.setText(Double.toString(getSum()));  
             }          
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -337,7 +341,7 @@ public class Menu_Page extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Menu_Page().setVisible(true);
+                new Menu_Page().setVisible(true);               
             }
         });
     }
