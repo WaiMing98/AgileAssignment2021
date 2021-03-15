@@ -30,8 +30,6 @@ public class Menu_Page extends javax.swing.JFrame {
         init();
         refreshDDL();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        //1111
     }
 
     public Menu_Page(ArrayList<MenuPage> MP1, ArrayList<Order> OR1, ArrayList<paymentMethod> PP1){

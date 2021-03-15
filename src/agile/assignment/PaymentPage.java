@@ -177,9 +177,6 @@ public class PaymentPage extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(49, 49, 49)
                         .addComponent(jRadioButton3)
@@ -191,18 +188,6 @@ public class PaymentPage extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(15, 15, 15)
-                                        .addComponent(jLabel4))
-                                    .addComponent(jLabel5))
-                                .addGap(60, 60, 60)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblAmount)
-                                        .addGap(46, 46, 46))
-                                    .addComponent(txtPwd)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel2))
                                 .addGap(19, 19, 19)
@@ -210,7 +195,24 @@ public class PaymentPage extends javax.swing.JFrame {
                                     .addComponent(txtDate)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(txtCardNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE)))))))
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(15, 15, 15)
+                                        .addComponent(jLabel4))
+                                    .addComponent(jLabel5))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(60, 60, 60)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(lblAmount)
+                                                .addGap(46, 46, 46))
+                                            .addComponent(txtPwd)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButton1)))))))
                 .addGap(62, 62, 62))
         );
         layout.setVerticalGroup(
@@ -254,8 +256,17 @@ public class PaymentPage extends javax.swing.JFrame {
         else if(txtDate.getText().length() != 4){
             JOptionPane.showMessageDialog(this,"Date must include 4 digit of number");
         }
-        else if(txtCardNumber.getText().length() != 16){
-            JOptionPane.showMessageDialog(this,"Card Number must include 16 digit of number");
+//        else if(txtCardNumber.getText().length() != 16){
+//            JOptionPane.showMessageDialog(this,"Card Number must include 16 digit of number");
+//        }
+        else if(jRadioButton1.isSelected() == false && jRadioButton3.isSelected() == false){
+            JOptionPane.showMessageDialog(this, "Please select payment method");
+        }
+        else if(jRadioButton1.isSelected() && txtCardNumber.getText().substring(0,1).matches("[0-4|6-9]")){
+            JOptionPane.showMessageDialog(this, "The Card number is start by 5");
+        }
+        else if(jRadioButton3.isSelected() && txtCardNumber.getText().substring(0,1).matches("[0-3|5-9]")) {
+            JOptionPane.showMessageDialog(this, "The Card number is start by 4");
         }
         else{
 //            String cardType;
