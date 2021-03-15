@@ -24,9 +24,18 @@ public class Food extends javax.swing.JFrame {
     JFrame frame;
     public Food() {
         initComponents();
+        String IDs = "1";
+        String names = "ASD";
+        String q = "1";
+        String pp = "2";
+        String s = "Available";
+        String t = "Food";
+        Object [] a ={IDs,names,1,pp,s,t};
         String [] cols = {"ID", "Name", "Quantity", "Per Price", "Status","Type"};
         DefaultTableModel modal = new DefaultTableModel(null, cols);
         FoodTable.setModel(modal);
+        modal.addRow(a);
+        
     }
 
     /**
@@ -101,7 +110,6 @@ public class Food extends javax.swing.JFrame {
         jPanel1.add(jLabel7);
 
         cboType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Food", "Drink" }));
-        cboType.setSelectedIndex(-1);
         jPanel1.add(cboType);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -168,13 +176,13 @@ public class Food extends javax.swing.JFrame {
 
         FoodTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
             }
         ));
         FoodTable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -413,6 +421,12 @@ public class Food extends javax.swing.JFrame {
             isValid = false;
             error += "Name is required!\n";
         }
+        
+        if(FoodTable.getColumnName(2).equals(txtName.getText())){
+            isValid = false;
+            JOptionPane.showMessageDialog(frame, "Name exist!", "Error", JOptionPane.ERROR_MESSAGE );
+        }
+                   
         if(txtQuantity.getText().length() <= 0){
             isValid = false;
             error += "Quantity is required!\n";
