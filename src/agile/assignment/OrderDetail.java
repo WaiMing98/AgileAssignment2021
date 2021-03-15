@@ -27,9 +27,6 @@ public class OrderDetail extends javax.swing.JFrame {
 
     public OrderDetail() {
         initComponents();
-        init();
-        refreshTable();
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
     
     public OrderDetail(ArrayList<MenuPage> MP1, ArrayList<Order> OR1, ArrayList<paymentMethod> PP1){
@@ -37,16 +34,14 @@ public class OrderDetail extends javax.swing.JFrame {
         this.OR = OR1;
         this.PP= PP1;
         initComponents();
-        init();
         refreshTable();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
     
-    
-    
     public void init(){
         Order PM = new Order("asd","asd","asd","asd");
         OR.add(PM);
+        
         DefaultTableModel model = (DefaultTableModel) Order.getModel();
         int rowCount = model.getRowCount();
             for(int i=rowCount-1 ; i>=0;i--){
@@ -56,8 +51,7 @@ public class OrderDetail extends javax.swing.JFrame {
             model.addRow(new Object[]{ 
                 OR.get(i).getOrderID(),
                 OR.get(i).getDate(),
-                OR.get(i).getAmount(),
-                OR.get(i).getProdID()
+                OR.get(i).getAmount()
             });
         }
     }
@@ -72,8 +66,7 @@ public class OrderDetail extends javax.swing.JFrame {
             model.addRow(new Object[]{ 
                 OR.get(i).getOrderID(),
                 OR.get(i).getDate(),
-                OR.get(i).getAmount(),
-                OR.get(i).getProdID()
+                OR.get(i).getAmount()
             });
         }
         Order.setRowSelectionAllowed(true);
@@ -99,29 +92,29 @@ public class OrderDetail extends javax.swing.JFrame {
 
         Order.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "ID", "Date", "Amount", "Product"
+                "ID", "Date", "Amount"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true, true
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        Order.setColumnSelectionAllowed(true);
         jScrollPane1.setViewportView(Order);
         if (Order.getColumnModel().getColumnCount() > 0) {
             Order.getColumnModel().getColumn(0).setResizable(false);
             Order.getColumnModel().getColumn(1).setResizable(false);
             Order.getColumnModel().getColumn(2).setResizable(false);
-            Order.getColumnModel().getColumn(3).setResizable(false);
         }
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N

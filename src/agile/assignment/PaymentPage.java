@@ -6,6 +6,7 @@
 package agile.assignment;
 
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
@@ -44,19 +45,35 @@ public class PaymentPage extends javax.swing.JFrame {
     
         
     public String GenNewID(){
-    String newID = "";
-    if(!PP.isEmpty()){
-        int paymentID = PP.size() -1;
-        String lastPromoID = PP.get(paymentID).getPaymentID();
-        String prefix = lastPromoID.substring(0,2);
-        int integer = Integer.parseInt(lastPromoID.substring(2,5));
-        integer +=1;  
-        newID = prefix + String.format("%03d", integer);
-    }else{
-        newID = "PP001";
-    }
+        String newID = "";
+        if(!PP.isEmpty()){
+            int paymentID = PP.size() -1;
+            String lastPromoID = PP.get(paymentID).getPaymentID();
+            String prefix = lastPromoID.substring(0,2);
+            int integer = Integer.parseInt(lastPromoID.substring(2,5));
+            integer +=1;  
+            newID = prefix + String.format("%03d", integer);
+        }else{
+            newID = "PR001";
+        }
     return newID;
     }    
+    
+    public String GenNewID2(){
+        String newID = "";
+        if(!OR.isEmpty()){
+            int OrderID = OR.size() -1;
+            String lastPromoID = OR.get(OrderID).getOrderID();
+            String prefix = lastPromoID.substring(0,2);
+            int integer = Integer.parseInt(lastPromoID.substring(2,5));
+            integer +=1;  
+            newID = prefix + String.format("%03d", integer);
+        }else{
+            newID = "OR001";
+        }
+    return newID;
+    }  
+    
     
     
     /**
@@ -241,21 +258,25 @@ public class PaymentPage extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Card Number must include 16 digit of number");
         }
         else{
-            String cardType;
-            if(jRadioButton1.isSelected()){
-                cardType = jRadioButton1.getText();
-            } 
-            else{
-                cardType = jRadioButton3.getText();
-            }
-            String cn = txtCardNumber.getText();
-            String dt = txtDate.getText();
-            String pwd = txtPwd.getText();
+//            String cardType;
+//            if(jRadioButton1.isSelected()){
+//                cardType = jRadioButton1.getText();
+//            } 
+//            else{
+//                cardType = jRadioButton3.getText();
+//            }
+//            String cn = txtCardNumber.getText();
+//            String dt = txtDate.getText();
+//            String pwd = txtPwd.getText();
             String amount = lblAmount.getText();
-            paymentMethod pp = new paymentMethod(GenNewID(),cardType, cn, dt, pwd, amount);
-            PP.add(pp);
+//            paymentMethod pp = new paymentMethod(GenNewID(),cardType, cn, dt, pwd, amount);
+//            PP.add(pp);
+            Date today = new Date();
+            String date2 = today.toString();
+            Order O = new Order(GenNewID(),date2,amount,"Set A");
+            OR.add(O);
             JOptionPane.showMessageDialog(this,"Payment successful");
-            new OrderDetail().setVisible(true);
+            new OrderDetail(MP,OR,PP).setVisible(true);
             this.setVisible(false);
             dispose();
         }
