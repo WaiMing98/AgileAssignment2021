@@ -122,11 +122,10 @@ public class NewJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     
-    String orders[][] = {{"Jonathan", "123 paper street", "0192252345", "RM30.90","1. HAMBORGOR"},
-            {"Arc","333 magic blv.","0138882345","RM12.50","1. pizza"},
-            {"Monika","789 world walk","0192346224","RM33.10","1. Combo box"},
-            {"Michael","908 city street","01526623789","RM70.90","!. Steak set"},
-            {"Jessica","971 hillside","0178832348","RM22.50","1. Steak ala carte"}};
+    String orders[][] = {{"Jonathan", "123 paper street", "0192252345", "RM30.90","1. HAMBORGOR","23"},
+            {"Arc","333 magic blv.","0138882345","RM12.50","1. pizza", "10"},
+            {"Monika","789 world walk","0192346224","RM33.10","1. Combo box", "15"},
+            {"Michael","908 city street","01526623789","RM70.90","1. Steak set", "4"}};
     
     
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed

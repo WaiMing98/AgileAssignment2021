@@ -20,7 +20,7 @@ public class OrderContents extends javax.swing.JFrame {
     String orders[][] = {{"Jonathan", "123 paper street", "0192252345", "RM30.90","1. HAMBORGOR","23"},
             {"Arc","333 magic blv.","0138882345","RM12.50","1. pizza", "10"},
             {"Monika","789 world walk","0192346224","RM33.10","1. Combo box", "15"},
-            {"Michael","908 city street","01526623789","RM70.90","!. Steak set", "4"}};
+            {"Michael","908 city street","01526623789","RM70.90","1. Steak set", "4"}};
     
     public OrderContents() {
         initComponents();
