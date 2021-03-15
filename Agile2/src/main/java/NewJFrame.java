@@ -121,39 +121,47 @@ public class NewJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    String orders[][] = {{"Jonathan", "123 paper street", "0192252345", "RM30.90","1. HAMBORGOR"},
+            {"Arc","333 magic blv.","0138882345","RM12.50","1. pizza"},
+            {"Monika","789 world walk","0192346224","RM33.10","1. Combo box"},
+            {"Michael","908 city street","01526623789","RM70.90","!. Steak set"},
+            {"Jessica","971 hillside","0178832348","RM22.50","1. Steak ala carte"}};
+    
+    
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
         switch (jComboBox1.getSelectedIndex()) {
             case 0:
-                jTextField1.setText("Jonathan");
-                jTextField2.setText("123 paper street");
-                jTextField3.setText("0191234568");
-                jTextField4.setText("RM30.90");
-                jTextField5.setText("1. HAMBORGOR");
+                jTextField1.setText(orders[0][0]);
+                jTextField2.setText(orders[0][1]);
+                jTextField3.setText(orders[0][2]);
+                jTextField4.setText(orders[0][3]);
+                jTextField5.setText(orders[0][4]);
                 jLabel6.setText(".");
                 break;
             case 1:
-                jTextField1.setText("Monika");
-                jTextField2.setText("888 white space");
-                jTextField3.setText("0111237438");
-                jTextField4.setText("RM12.90");
-                jTextField5.setText("1. FRIED");
+                jTextField1.setText(orders[1][0]);
+                jTextField2.setText(orders[1][1]);
+                jTextField3.setText(orders[1][2]);
+                jTextField4.setText(orders[1][3]);
+                jTextField5.setText(orders[1][4]);
                 jLabel6.setText(".");
                 break;
             case 2:
-                jTextField1.setText("Arc");
-                jTextField2.setText("123 paper way");
-                jTextField3.setText("0191234568");
-                jTextField4.setText("RM30.90");
-                jTextField5.setText("1. pizza");
+                jTextField1.setText(orders[2][0]);
+                jTextField2.setText(orders[2][1]);
+                jTextField3.setText(orders[2][2]);
+                jTextField4.setText(orders[2][3]);
+                jTextField5.setText(orders[2][4]);
                 jLabel6.setText(".");
                 break;
             case 3:
-                jTextField1.setText("Michael");
-                jTextField2.setText("324 smart street");
-                jTextField3.setText("0184324568");
-                jTextField4.setText("RM20.90");
-                jTextField5.setText("1. salad");
+                jTextField1.setText(orders[3][0]);
+                jTextField2.setText(orders[3][1]);
+                jTextField3.setText(orders[3][2]);
+                jTextField4.setText(orders[3][3]);
+                jTextField5.setText(orders[3][4]);
                 jLabel6.setText(".");
                 break;
             default:
