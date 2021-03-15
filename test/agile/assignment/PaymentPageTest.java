@@ -59,6 +59,7 @@ public class PaymentPageTest {
         assertEquals("OR001",OR.get(0).getOrderID());
         String[] args = null;
         PaymentPage.main(args);
+        
     }
     
 }
