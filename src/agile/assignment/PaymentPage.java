@@ -101,6 +101,7 @@ public class PaymentPage extends javax.swing.JFrame {
         txtPwd = new javax.swing.JPasswordField();
         jLabel5 = new javax.swing.JLabel();
         lblAmount = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         jLabel1.setText("jLabel1");
 
@@ -171,6 +172,13 @@ public class PaymentPage extends javax.swing.JFrame {
 
         lblAmount.setText("lblAmount");
 
+        jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -212,6 +220,8 @@ public class PaymentPage extends javax.swing.JFrame {
                                             .addComponent(txtPwd)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButton2)
+                                        .addGap(18, 18, 18)
                                         .addComponent(jButton1)))))))
                 .addGap(62, 62, 62))
         );
@@ -239,7 +249,9 @@ public class PaymentPage extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(lblAmount))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -256,9 +268,9 @@ public class PaymentPage extends javax.swing.JFrame {
         else if(txtDate.getText().length() != 4){
             JOptionPane.showMessageDialog(this,"Date must include 4 digit of number");
         }
-//        else if(txtCardNumber.getText().length() != 16){
-//            JOptionPane.showMessageDialog(this,"Card Number must include 16 digit of number");
-//        }
+        else if(txtCardNumber.getText().length() != 16){
+            JOptionPane.showMessageDialog(this,"Card Number must include 16 digit of number");
+        }
         else if(jRadioButton1.isSelected() == false && jRadioButton3.isSelected() == false){
             JOptionPane.showMessageDialog(this, "Please select payment method");
         }
@@ -323,6 +335,12 @@ public class PaymentPage extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtCardNumberKeyTyped
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if(txtDate.getText().substring(0,2).matches("^[0-2]|^[1-9]") && txtDate.getText().substring(2,4).matches("[^2-3]|[^1-9]")){
+            JOptionPane.showMessageDialog(this,"Date format not correct");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -362,6 +380,7 @@ public class PaymentPage extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;
     private javax.swing.JLabel jLabel1;
