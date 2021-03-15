@@ -266,7 +266,7 @@ public class PaymentPage extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"CVV must include 3 digit of number");
         }
         else if(txtDate.getText().length() != 4){
-            JOptionPane.showMessageDialog(this,"Date must include 4 digit of number");
+            JOptionPane.showMessageDialog(this,"Date must include 4 digit of number  ");
         }
         else if(txtCardNumber.getText().length() != 16){
             JOptionPane.showMessageDialog(this,"Card Number must include 16 digit of number");
@@ -281,6 +281,7 @@ public class PaymentPage extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "The Card number is start by 4");
         }
         else{
+            
 //            String cardType;
 //            if(jRadioButton1.isSelected()){
 //                cardType = jRadioButton1.getText();
